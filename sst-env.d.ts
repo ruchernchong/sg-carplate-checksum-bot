@@ -6,5 +6,14 @@ import "sst"
 export {}
 declare module "sst" {
   export interface Resource {
+    "Bot": {
+      "name": string
+      "type": "sst.aws.Function"
+      "url": string
+    }
+    "TelegramBotToken": {
+      "type": "sst.sst.Secret"
+      "value": string
+    }
   }
 }
