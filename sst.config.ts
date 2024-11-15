@@ -14,19 +14,17 @@ export default $config({
     };
   },
   async run() {
-    const TelegramBotToken = new sst.Secret(
+    const TELEGRAM_BOT_TOKEN = new sst.Secret(
       "TelegramBotToken",
       process.env.TELEGRAM_BOT_TOKEN,
     );
 
-    const bot = new sst.aws.Function("Bot", {
+    new sst.aws.Function("Bot", {
       handler: "src/index.handler",
-      link: [TelegramBotToken],
+      link: [TELEGRAM_BOT_TOKEN],
+      architecture: "arm64",
+
       url: true,
     });
-
-    return {
-      api: bot.url,
-    };
   },
 });
