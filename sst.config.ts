@@ -38,7 +38,7 @@ export default $config({
       },
     });
 
-    new sst.aws.Router("BotRouter", {
+    new sst.aws.Router("BotCdn", {
       domain: {
         ...DOMAIN[$app.stage],
         dns: sst.cloudflare.dns(),

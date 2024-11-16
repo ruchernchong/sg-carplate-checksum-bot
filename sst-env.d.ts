@@ -11,7 +11,7 @@ declare module "sst" {
       "type": "sst.aws.Function"
       "url": string
     }
-    "BotRouter": {
+    "BotCdn": {
       "type": "sst.aws.Router"
       "url": string
     }
