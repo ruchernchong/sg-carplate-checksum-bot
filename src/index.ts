@@ -1,6 +1,7 @@
 import { Resource } from "sst";
 import { Telegraf } from "telegraf";
-import { checksumHandler } from "./lib/handlers/checksumHandler";
+// import { checksumHandler } from "./lib/handlers/checksumHandler";
+import { lookupHandler } from "./lib/handlers/lookupHandler";
 
 const bot = new Telegraf(Resource.TelegramBotToken.value);
 
@@ -18,7 +19,8 @@ const matchRegex = (pattern: RegExp, handler) => (ctx, next) => {
   return next();
 };
 
-bot.use(matchRegex(/^[A-Z]{1,3}\s?\d{1,4}$/i, checksumHandler));
+// bot.use(matchRegex(/^[A-Z]{1,3}\s?\d{1,4}$/i, checksumHandler));
+bot.use(matchRegex(/^[A-Z]{1,3}\s?\d{1,4}[A-Z]$/i, lookupHandler));
 
 export const handler = async (event: { body: string }) => {
   const body = JSON.parse(event.body);
