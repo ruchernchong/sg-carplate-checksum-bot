@@ -1,4 +1,4 @@
-import { API_URL } from "../../config";
+import { API_URL } from "@/config";
 
 export const lookupHandler = async (ctx) => {
   const vehicleNo: string = ctx.state.matches.input.toUpperCase();

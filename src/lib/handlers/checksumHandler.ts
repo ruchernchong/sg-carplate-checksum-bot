@@ -1,5 +1,5 @@
-import { API_URL } from "../../config";
-import { ChecksumResponse } from "../../types/checksum";
+import { API_URL } from "@/config";
+import { ChecksumResponse } from "@/types/checksum";
 
 export const checksumHandler = async (ctx) => {
   const plate = ctx.state.matches.input.toUpperCase();

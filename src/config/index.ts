@@ -1,2 +1,4 @@
-export const API_URL =
-  "https://zjzbtlnfamsqk55svb5jqkewfq0htywv.lambda-url.ap-southeast-1.on.aws";
+const DOMAIN_NAME = "sgcarplatechecksum.app";
+
+const API_DOMAIN = `https://api.${DOMAIN_NAME}`;
+export const API_URL = process.env.API_URL || API_DOMAIN;
