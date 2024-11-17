@@ -32,6 +32,7 @@ export default $config({
       handler: "src/index.handler",
       link: [TELEGRAM_BOT_TOKEN],
       architecture: "arm64",
+      timeout: "1 minute",
       url: true,
       environment: {
         API_URL: process.env.API_URL!,
@@ -45,9 +46,6 @@ export default $config({
       },
       routes: {
         "/*": bot.url,
-      },
-      invalidation: {
-        wait: false,
       },
     });
   },
