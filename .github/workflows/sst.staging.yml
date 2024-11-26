@@ -37,7 +37,8 @@ jobs:
     env:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-      API_URL: ${{ vars.API_URL }}
+      QSTASH_TOKEN: ${{ secrets.QSTASH_TOKEN }}
+      LOOKUP_API_URL: ${{ vars.LOOKUP_API_URL }}
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4

@@ -1,7 +1,8 @@
+import { Resource } from "sst";
 import { Client } from "@upstash/qstash";
-import { API_URL } from "@/config";
+import { LOOKUP_API_URL } from "@/config";
 
-const qstash = new Client({ token: process.env.QSTASH_TOKEN });
+const qstash = new Client({ token: Resource.QStashToken.value });
 
 export const lookupHandler = async (ctx) => {
   const chatId = ctx.update.message.chat.id;
@@ -16,11 +17,11 @@ export const lookupHandler = async (ctx) => {
   params.set("chatId", chatId);
   params.set("vehicleNo", vehicleNo);
 
-  console.log(`${API_URL}/lookup`);
+  console.log(`${LOOKUP_API_URL}/lookup`);
 
   await qstash
     .publishJSON({
-      url: `${API_URL}/lookup`,
+      url: `${LOOKUP_API_URL}/lookup`,
       body: { chatId, vehicleNo },
     })
     .catch((e) => {
