@@ -10,7 +10,14 @@ export const lookupHandler = async (ctx) => {
 
   const hours = new Date().getHours();
   if (hours >= 0 && hours < 6) {
-    return ctx.reply("Service unavailable between 12 AM and 6 AM SGT.");
+    const reply =
+      "🔧 Service Maintenance Window\n" +
+      "🕐 Daily: 12 AM - 6 AM (SGT)\n" +
+      "⚠️ Lookup service provider is unavailable during this period.";
+
+    console.log(reply);
+
+    return ctx.reply(reply);
   }
 
   const params = new URLSearchParams();
@@ -28,12 +35,14 @@ export const lookupHandler = async (ctx) => {
       console.error("Error queuing job:", e);
     });
 
-  const response =
+  const reply =
     "📊 Processing Request\n" +
     "⏳ Duration: 1-2 minutes\n" +
     "📱 You'll be notified when ready";
 
-  return ctx.reply(response, {
+  console.log(reply);
+
+  return ctx.reply(reply, {
     reply_to_message_id: ctx.message.message_id,
   });
 };
