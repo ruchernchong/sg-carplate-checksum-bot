@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@upstash/qstash": "^2.7.17",
     "sst": "3.3.18",
     "telegraf": "^4.16.3"
   },

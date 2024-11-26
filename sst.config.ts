@@ -32,10 +32,11 @@ export default $config({
       handler: "src/index.handler",
       link: [TELEGRAM_BOT_TOKEN],
       architecture: "arm64",
-      timeout: "1 minute",
       url: true,
       environment: {
+        TZ: "Asia/Singapore",
         API_URL: process.env.API_URL!,
+        QSTASH_TOKEN: process.env.QSTASH_TOKEN!,
       },
     });
 
