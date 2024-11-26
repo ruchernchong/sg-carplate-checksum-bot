@@ -32,25 +32,15 @@ export default $config({
       process.env.QSTASH_TOKEN,
     );
 
-    const bot = new sst.aws.Function("BotApi", {
+    new sst.aws.Function("Bot", {
       handler: "src/index.handler",
       link: [TELEGRAM_BOT_TOKEN, QSTASH_TOKEN],
       architecture: "arm64",
-      url: true,
       environment: {
         TZ: "Asia/Singapore",
         LOOKUP_API_URL: process.env.LOOKUP_API_URL!,
       },
-    });
-
-    new sst.aws.Router("BotCdn", {
-      domain: {
-        ...DOMAIN[$app.stage],
-        dns: sst.cloudflare.dns(),
-      },
-      routes: {
-        "/*": bot.url,
-      },
+      url: true,
     });
   },
 });
