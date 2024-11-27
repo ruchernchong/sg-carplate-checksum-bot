@@ -27,26 +27,20 @@ export default $config({
       "TelegramBotToken",
       process.env.TELEGRAM_BOT_TOKEN,
     );
+    const QSTASH_TOKEN = new sst.Secret(
+      "QStashToken",
+      process.env.QSTASH_TOKEN,
+    );
 
-    const bot = new sst.aws.Function("BotApi", {
+    new sst.aws.Function("Bot", {
       handler: "src/index.handler",
-      link: [TELEGRAM_BOT_TOKEN],
+      link: [TELEGRAM_BOT_TOKEN, QSTASH_TOKEN],
       architecture: "arm64",
-      timeout: "1 minute",
-      url: true,
       environment: {
-        API_URL: process.env.API_URL!,
+        TZ: "Asia/Singapore",
+        LOOKUP_API_URL: process.env.LOOKUP_API_URL!,
       },
-    });
-
-    new sst.aws.Router("BotCdn", {
-      domain: {
-        ...DOMAIN[$app.stage],
-        dns: sst.cloudflare.dns(),
-      },
-      routes: {
-        "/*": bot.url,
-      },
+      url: true,
     });
   },
 });
